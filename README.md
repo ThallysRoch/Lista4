@@ -14,6 +14,9 @@ Ranking Meninos       Ranking Meninas
 10 Heitor             10 Maria Eduarda
 
     R=
+    
+    Obs: Considerando que as o lado dos meninos está separado por TAB do lado das meninas
+    
       > 1.sh
       chmod +x 1.sh
       vim 1.sh
