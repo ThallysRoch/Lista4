@@ -19,6 +19,17 @@ Ranking Meninos       Ranking Meninas
       vim 1.sh
         
         #!/bin/bash
+	
+	sed -E 's/ /./g' < lista.txt > listajunta
+	awk '{print $1}' < listajunta > lista_meninos
+	tr '.' ' ' < lista_meninos > lista_oficial
+	
+	awk '{print $2}' < listajunta > lista_meninas
+	tr '.' ' ' < lista_meninas > lista_meninas_oficial
+	
+	cat lista_oficial
+	echo "-----------------------"
+	cat lista_meninas_oficial
 
 2 - Dado  um  arquivo  com  a lista de todos  os  downloads efetuados  pelos  usuários  no  último  mês,  deseja-se totalizar quanto cada usuário baixou. Segue o formato do arquivo:
 
