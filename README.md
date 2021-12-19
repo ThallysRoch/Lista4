@@ -49,6 +49,60 @@ b - Remova todos os dígitos do arquivo.
 c - Substitua todos os caracteres que não são letras nem dígitos do arquivo por ~.
 q - Saia do script.
 
+
+	R=
+		
+	> 3.sh
+      	chmod +x 3.sh
+      	vim 3.sh
+        
+        	#!/bin/bash
+		
+		function rmv_letra (){
+			read -p "Informe o arquivo: " a
+			sed 's/[a-zA-Z]//g' < $a > thallys.txt
+			$(cat thallys.txt > $a)
+			echo -e "\nLetras removidas!\n"
+			rm thallys.txt
+		}
+		
+		function rmv_dgt (){
+			read -p "Informe o arquivo: " b
+			sed 's/[0-9]//g' < $b > thallys.txt
+			$(cat thallys.txt > $b)
+			echo -e "\nDígitos removidas!\n"
+			rm thallys.txt
+		}
+		
+		function sub_carac (){
+			read -p "Informe o arquivo: " c
+			sed 's/[^a-zA-Z0-9 - ]/~/g' < $c > thallys.txt
+			$(cat thallys.txt > $c)
+			echo -e "\nSubstituição realizada!\n"
+			rm thallys.txt
+		}		
+		
+		
+		while true;do
+			
+			echo -e "Escolha uma opção
+				r - Digite o nome de um arquivo que será processado.
+				a - Remova todas as letras do arquivo.
+				b - Remova todos os dígitos do arquivo.
+				c - Substitua todos os caracteres que não são letras nem dígitos do arquivo por ~.
+				q - Saia do script. 
+			read -p "Informe sua opção: " opc
+			
+			case $opc in
+				"r") echo "<funcao>" ;;
+				"a") rmv_letra ;;
+				"b") rmv_dgt ;;
+				"c") sub_carac ;;
+				"q") exit 1 ;;
+				*) echo "Opção inválida" ;;
+			esac
+		done
+		
 4 - Escreva um script que remova todos os endereços IP de um arquivo de entrada, alterando o seu valor para **!!CENSU--RADO!!**.
 
 
