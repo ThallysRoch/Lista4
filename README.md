@@ -23,16 +23,22 @@ Ranking Meninos       Ranking Meninas
         
         #!/bin/bash
 	
-	sed -E 's/ /./g' < lista.txt > listajunta
-	awk '{print $1}' < listajunta > lista_meninos
-	tr '.' ' ' < lista_meninos > lista_oficial
+	a=$1
 	
-	awk '{print $2}' < listajunta > lista_meninas
-	tr '.' ' ' < lista_meninas > lista_meninas_oficial
+	$(awk '{print $1,$2}' $a | head -n1 | tail -n1 > ranking_meninos)
 	
-	cat lista_oficial
-	echo "-----------------------"
-	cat lista_meninas_oficial
+	$(awk '{print $1,$2,$3}' $a | grep "[0-9].[a-zA-Z]" | sed -e 's/[0-9]\{1,\}$//g' >> ranking_meninos)
+	
+	$(awk '{print $3,$4}' $a | head -n1 | tail -n1 > ranking_meninas)
+	
+	$(awk '{print $3,$4,$5}' $a | grep "[0-9].[a-zA-Z]" | sed -e 's/^[ a-zA-Z]\{1,\}//g' >> ranking_meninas)
+	
+	echo -e "\n"
+	cat ranking_meninos
+	echo -e "\n"
+	cat ranking_meninas
+	
+	
 
 2 - Dado  um  arquivo  com  a lista de todos  os  downloads efetuados  pelos  usuários  no  último  mês,  deseja-se totalizar quanto cada usuário baixou. Segue o formato do arquivo:
 
