@@ -199,9 +199,9 @@ Use a criatividade para os nomes de contatos na sua lista de números.
     R=
       > num
       vim num 
-      	12345678900 Thor
-	      11111111111 Galalau
-	      83987654321 Papaleguas
+      		12345678900 Thor
+		11111111111 Galalau
+		83987654321 Papaleguas
       > 5.sh
       chmod +x 5.sh
       vim 5.sh
@@ -210,21 +210,6 @@ Use a criatividade para os nomes de contatos na sua lista de números.
         
         a=$1
         
-        $(awk '{print $1}' < $a > num.txt)
-        $(awk '{print $2}' < $a > nome.txt)
+        sed 's/\(..\)\(.\)\(.\{4\}\)\(.\{4\}\)\(.*\)/(\1) \2 \3-\4 \5/g' < $a > lista_num.txt
         
-        arq=$(cat nome.txt)
-        
-        sed 's/\(..\)\(.\{1\}\)\(.\{4\}\)/(\1) \2 \3-/g' < num.txt > lista_num.txt
-        
-        cont=0
-        
-        for i in $arq; do
-            cont=$(( cont + 1 ))
-            sed "s/$/ $i/" < lista_num.txt >> $i.txt
-            cat $i.txt | head -n$cont | tail -n 1 >> nova_lista
-            rm $i.txt
-         done
-         
-         cat nova_lista
-         rm nova_lista
+	cat lista_num.txt
