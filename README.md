@@ -26,9 +26,13 @@ Ranking Meninos       Ranking Meninas
 	
 	$(awk '{print $1,$2}' $a | head -n1 | tail -n1 > ranking_meninos)
 	
+	echo -e "\n" >> ranking_meninos
+	
 	$(awk '{print $1,$2,$3}' $a | grep "[0-9].[a-zA-Z]" | sed -e 's/[0-9]\{1,\}$//g' >> ranking_meninos)
 	
 	$(awk '{print $3,$4}' $a | head -n1 | tail -n1 > ranking_meninas)
+	
+	echo -e "\n" >> ranking_meninas
 	
 	$(awk '{print $3,$4,$5}' $a | grep "[0-9].[a-zA-Z]" | sed -e 's/^[ a-zA-Z]\{1,\}//g' >> ranking_meninas)
 	
@@ -210,6 +214,6 @@ Use a criatividade para os nomes de contatos na sua lista de números.
         
         a=$1
         
-        sed 's/\(..\)\(.\)\(.\{4\}\)\(.\{4\}\)\(.*\)/(\1) \2 \3-\4 \5/g' < $a > lista_num.txt
+        sed -e 's/\(..\)\(.\)\(.\{4\}\)\(.\{4\}\)\(.*\)/(\1) \2 \3-\4 \5/g' < $a > lista_num.txt
         
 	cat lista_num.txt
