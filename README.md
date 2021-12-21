@@ -93,32 +93,55 @@ q - Saia do script.
         
         	#!/bin/bash
 		
-		arq=""
-		
 		function selection_arq (){
-			read -p "Informe o arquivo que será processado: " arquivo
-			arq=$arquivo
+			
+			read -p "Informe o arquivo que será processado: " arq
+	
+			if [ ! -e "${arq}" ]; then
+
+				echo -e "\nArquivo inválido\n"
+
+		    	fi			
+
 		}
 		
 		function rmv_letra (){
-			sed 's/[a-zA-Z]//g' < $arq > thallys.txt
-			$(cat thallys.txt > $arq)
-			echo -e "\nLetras removidas!\n"
-			rm thallys.txt
+		
+			if [ ! -e "${arq}" ]; then
+
+				echo -e "\nInforme um arquivo para continuar!\n"
+			else				
+				sed 's/[a-zA-Z]//g' < $arq > thallys.txt
+				$(cat thallys.txt > $arq)
+				echo -e "\nLetras removidas!\n"
+				rm thallys.txt
+			fi
 		}
 		
 		function rmv_dgt (){
-			sed 's/[0-9]//g' < $arq > thallys.txt
-			$(cat thallys.txt > $arq)
-			echo -e "\nDígitos removidas!\n"
-			rm thallys.txt
+		
+			if [ ! -e "${arq}" ]; then
+
+				echo -e "\nInforme um arquivo para continuar!\n"
+			else
+				sed 's/[0-9]//g' < $arq > thallys.txt
+				$(cat thallys.txt > $arq)
+				echo -e "\nDígitos removidos!\n"
+				rm thallys.txt
+			fi
 		}
 		
 		function sub_carac (){
-			sed -e 's/[^a-zA-Z0-9 - ]/~/g' < $arq > thallys.txt
-			$(cat thallys.txt > $arq)
-			echo -e "\nSubstituição realizada!\n"
-			rm thallys.txt
+		
+			if [ ! -e "${arq}" ]; then
+
+				echo -e "\nInforme um arquivo para continuar!\n"
+			else
+				sed -e 's/[^a-zA-Z0-9 - ]/~/g' < $arq > thallys.txt
+				$(cat thallys.txt > $arq)
+				echo -e "\nSubstituição realizada!\n"
+				rm thallys.txt
+			fi
 		}		
 		
 		
