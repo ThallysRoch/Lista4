@@ -115,7 +115,7 @@ q - Saia do script.
 		}
 		
 		function sub_carac (){
-			sed 's/[^a-zA-Z0-9 - ]/~/g' < $arq > thallys.txt
+			sed -e 's/[^a-zA-Z0-9 - ]/~/g' < $arq > thallys.txt
 			$(cat thallys.txt > $arq)
 			echo -e "\nSubstituição realizada!\n"
 			rm thallys.txt
