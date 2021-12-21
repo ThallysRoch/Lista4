@@ -93,26 +93,30 @@ q - Saia do script.
         
         	#!/bin/bash
 		
+		arq=""
+		
+		function selection_arq (){
+			read -p "Informe o arquivo que será processado: " arquivo
+			arq=$arquivo
+		}
+		
 		function rmv_letra (){
-			read -p "Informe o arquivo: " a
-			sed 's/[a-zA-Z]//g' < $a > thallys.txt
-			$(cat thallys.txt > $a)
+			sed 's/[a-zA-Z]//g' < $arq > thallys.txt
+			$(cat thallys.txt > $arq)
 			echo -e "\nLetras removidas!\n"
 			rm thallys.txt
 		}
 		
 		function rmv_dgt (){
-			read -p "Informe o arquivo: " b
-			sed 's/[0-9]//g' < $b > thallys.txt
-			$(cat thallys.txt > $b)
+			sed 's/[0-9]//g' < $arq > thallys.txt
+			$(cat thallys.txt > $arq)
 			echo -e "\nDígitos removidas!\n"
 			rm thallys.txt
 		}
 		
 		function sub_carac (){
-			read -p "Informe o arquivo: " c
-			sed 's/[^a-zA-Z0-9 - ]/~/g' < $c > thallys.txt
-			$(cat thallys.txt > $c)
+			sed 's/[^a-zA-Z0-9 - ]/~/g' < $arq > thallys.txt
+			$(cat thallys.txt > $arq)
 			echo -e "\nSubstituição realizada!\n"
 			rm thallys.txt
 		}		
@@ -129,7 +133,7 @@ q - Saia do script.
 			read -p "Informe sua opção: " opc
 			
 			case $opc in
-				"r") echo "<funcao>" ;;
+				"r") selection_arq ;;
 				"a") rmv_letra ;;
 				"b") rmv_dgt ;;
 				"c") sub_carac ;;
