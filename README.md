@@ -46,6 +46,36 @@ Arr445 www.testes.com/dbz.wmv 20050
 Nelson www.uol.com.br 300
 Vianna debian.org/9.7.0.iso 800555
 
+	
+	R=
+		
+	> 2.sh
+      	chmod +x 2.sh
+      	vim 2.sh
+        
+        	#!/bin/bash
+		
+		a=$1
+		
+		declare -A D
+		
+		while IFS= read -r line; do
+		
+			D[$(echo $line | awk '{print $1}')]=0
+		
+		done < $a
+		
+		while IFS= read -r line; do
+		
+			D[$(echo $line | awk '{print $1}')]=$(( ${D[$(echo $line | awk '{print $1}')]} + $(echo $line | awk '{print $3}') ))
+		
+		done < $a
+		
+		for key in "${!D[@]}"; do
+			echo "$key - ${D[$key]}"
+		done
+	
+
 3 - Escreva um script que exiba um menu que, usando o sed:
 
 r - Digite o nome de um arquivo que será processado.
