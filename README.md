@@ -144,6 +144,18 @@ q - Saia do script.
 		
 4 - Escreva um script que remova todos os endereços IP de um arquivo de entrada, alterando o seu valor para **!!CENSU--RADO!!**.
 
+	R= 
+	      	> 4.sh
+	      	chmod +x 4.sh
+	      	vim 4.sh
+
+		#!/bin/bash
+		
+		arq=$1
+		
+		sed -e 's/[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/**!!CENSU--RADO!!**/g' ${arq}
+
+
 
 
 5 - Escreva um script que, dado uma lista de números de telefone no formato xxxxxxxxxxx, coloque cada telefone no formato (xx) x xxxx-xxxx. Exemplo:
